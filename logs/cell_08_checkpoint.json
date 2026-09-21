@@ -1,0 +1,12 @@
+{
+  "project_id": "documentaryforge_001",
+  "cell": 8,
+  "purpose": "OpenAlex scholarly discovery",
+  "outputs": [
+    "research/discovered_openalex.json"
+  ],
+  "stats": {
+    "count": 120
+  },
+  "utc": "2026-09-21T18:34:34Z"
+}
