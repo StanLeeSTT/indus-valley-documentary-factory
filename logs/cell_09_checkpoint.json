@@ -1,0 +1,12 @@
+{
+  "project_id": "documentaryforge_001",
+  "cell": 9,
+  "purpose": "Crossref scholarly discovery",
+  "outputs": [
+    "research/discovered_crossref.json"
+  ],
+  "stats": {
+    "count": 120
+  },
+  "utc": "2026-09-21T18:35:08Z"
+}
