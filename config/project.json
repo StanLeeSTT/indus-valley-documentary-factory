@@ -1,0 +1,9 @@
+{
+  "project_id": "indus_valley_001",
+  "title": "The Lost Civilization of the Indus Valley",
+  "max_sources": 100,
+  "top_retrieval_sources": 30,
+  "timeout": 20,
+  "delay": 0.25,
+  "user_agent": "IndusValleyDocumentaryFactory/1.0 research-pipeline"
+}

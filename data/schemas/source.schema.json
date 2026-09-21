@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": [
+    "source_id",
+    "title",
+    "source_type",
+    "url"
+  ]
+}

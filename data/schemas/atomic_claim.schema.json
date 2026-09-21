@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": [
+    "atomic_claim_id",
+    "claim",
+    "classification",
+    "risk",
+    "verification_status",
+    "source_ids",
+    "evidence_ids"
+  ]
+}
