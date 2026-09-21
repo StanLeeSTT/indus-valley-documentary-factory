@@ -8,5 +8,6 @@
   "stats": {
     "count": 120
   },
-  "utc": "2026-09-21T18:35:08Z"
+  "utc": "2026-09-21T18:35:08Z",
+  "git": "push_failed: fatal: The current branch main has no upstream branch.\nTo push the current branch and set the remote as upstream, use\n\n    git push --set-upstream origin main\n\n"
 }

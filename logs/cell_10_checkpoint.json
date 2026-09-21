@@ -1,0 +1,13 @@
+{
+  "project_id": "documentaryforge_001",
+  "cell": 10,
+  "purpose": "Archive discovery and source merge",
+  "outputs": [
+    "research/discovered_archive.json",
+    "research/discovered_sources_all.json"
+  ],
+  "stats": {
+    "raw": 291
+  },
+  "utc": "2026-09-21T18:44:24Z"
+}
