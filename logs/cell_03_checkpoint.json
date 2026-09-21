@@ -1,0 +1,10 @@
+{
+  "project_id": "documentaryforge_001",
+  "cell": 3,
+  "purpose": "Create topic profile",
+  "outputs": [
+    "config/topic_profile.json"
+  ],
+  "stats": {},
+  "utc": "2026-09-21T18:33:34Z"
+}
