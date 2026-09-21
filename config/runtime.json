@@ -1,0 +1,14 @@
+{
+  "project_id": "documentaryforge_001",
+  "documentary_title": "The Lost Civilization of the Indus Valley",
+  "timestamp_utc": "2026-09-21T18:31:20.296059+00:00",
+  "python": "3.12.13 (main, Mar  4 2026, 09:23:07) [GCC 11.4.0]",
+  "platform": "Linux-6.12.90+-x86_64-with-glibc2.35",
+  "git_available": true,
+  "gpu_available": true,
+  "gpu_info": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "kaggle": {
+    "kernel_run_type": "Interactive",
+    "internet_enabled": true
+  }
+}

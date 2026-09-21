@@ -1,0 +1,13 @@
+{
+  "project_id": "documentaryforge_001",
+  "cell": 1,
+  "purpose": "Initialize and verify the execution environment",
+  "outputs": [
+    "config/runtime.json"
+  ],
+  "stats": {
+    "gpu_available": true,
+    "git_available": true
+  },
+  "utc": "2026-09-21T18:31:20Z"
+}
