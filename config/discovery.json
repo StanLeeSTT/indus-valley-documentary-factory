@@ -1,0 +1,11 @@
+{
+  "max_sources": 100,
+  "top_retrieval_sources": 30,
+  "endpoints": [
+    "Wikipedia",
+    "Wikimedia Commons",
+    "OpenAlex",
+    "Crossref",
+    "Internet Archive"
+  ]
+}
