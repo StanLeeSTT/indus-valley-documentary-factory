@@ -1,16 +1,41 @@
-# Indus Valley Documentary Factory
+# DocumentaryForge
 
-Fresh rebuild. GitHub is the persistent source of truth; Kaggle is the execution/GPU environment.
+**Evidence-First AI Documentary Factory**
 
-Project: `indus_valley_001`
-Documentary: *The Lost Civilization of the Indus Valley*
+## Project identity
 
-Run the pipeline one cell at a time during the first build, then use `scripts/run_all.py` for repeatable runs.
+Factory project:
+
+`documentaryforge_001`
+
+Factory name:
+
+`DocumentaryForge`
+
+Current test documentary:
+
+`indus_valley_001`
+
+*The Lost Civilization of the Indus Valley*
+
+The Indus Valley documentary is a test production used to validate the
+factory. It is not the name or identity of the factory itself.
+
+## Architecture
+
+DocumentaryForge is designed to support many documentary productions.
+
+Each documentary receives its own documentary ID and production state.
+
+The factory is persistent in GitHub; Kaggle is used for execution and GPU
+compute.
 
 ## Research chain
+
 `source -> evidence -> atomic claim -> corroboration -> script`
 
-## Hard rules
+## Core rules
+
 - Do not use search-engine HTML scraping as the primary research interface.
 - OpenAlex/Crossref records sharing a DOI count as one independent work.
 - Abstract/metadata is not full text.
