@@ -1,0 +1,12 @@
+{
+  "project_id": "documentaryforge_001",
+  "factory": "DocumentaryForge",
+  "documentary_id": "indus_valley_001",
+  "documentary_title": "The Lost Civilization of the Indus Valley",
+  "recovery_type": "clean_git_recovery",
+  "trusted_pipeline_boundary": "cell_6",
+  "untrusted_pipeline_range": "cells_7_10",
+  "reason": "Cells 7-10 checkpoint metadata records failed pushes caused by missing upstream tracking. Their repository outputs are therefore not treated as trusted execution history.",
+  "github_head": "d4b5294b4f549b35ecb189f2d49718ddaf79289e",
+  "origin_main": "d4b5294b4f549b35ecb189f2d49718ddaf79289e"
+}
