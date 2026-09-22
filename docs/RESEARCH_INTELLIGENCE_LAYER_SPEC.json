@@ -1,0 +1,334 @@
+{
+  "spec_version": "1.0",
+  "factory": {
+    "name": "DocumentaryForge",
+    "id": "documentaryforge_001",
+    "description": "Evidence-First AI Documentary Factory"
+  },
+  "design_principles": [
+    "The documentary prompt is the primary input.",
+    "The factory dynamically generates research domains, questions, sub-questions, and search strategies.",
+    "Discovery, retrieval, evidence extraction, atomic claim extraction, corroboration, and script generation remain separate stages.",
+    "Metadata and abstracts are not treated as equivalent to full-text evidence.",
+    "Independent corroboration is based on independent works, not duplicate records.",
+    "The same DOI represents one independent scholarly work.",
+    "Uncertainty, disagreement, and research gaps are explicitly represented.",
+    "Visual evidence is a first-class research output.",
+    "All pipeline stages are restartable and idempotent.",
+    "Runtime storage is disposable; durable project state is preserved in the repository and structured registries.",
+    "No downloaded media is treated as authentic historical material merely because it exists online.",
+    "AI-generated imagery is a fallback/reconstruction asset and must never be silently presented as authentic archival material."
+  ],
+  "pipeline": [
+    {
+      "stage": 1,
+      "name": "prompt_analysis",
+      "purpose": "Interpret the user's documentary request.",
+      "outputs": [
+        "documentary objective",
+        "scope",
+        "time period",
+        "geography",
+        "entities",
+        "constraints",
+        "desired narrative emphasis"
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "research_planning",
+      "purpose": "Dynamically generate the research strategy from the documentary prompt.",
+      "outputs": [
+        "research domains",
+        "research questions",
+        "sub-questions",
+        "question priorities",
+        "evidence requirements"
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "search_planning",
+      "purpose": "Generate question-specific search queries and source-type strategies."
+    },
+    {
+      "stage": 4,
+      "name": "source_discovery",
+      "purpose": "Discover scholarly, institutional, archival, documentary, governmental, museum, and other relevant sources."
+    },
+    {
+      "stage": 5,
+      "name": "visual_discovery",
+      "purpose": "Discover images, video, maps, diagrams, artifacts, documents, satellite imagery, historical illustrations, and other visual evidence relevant to questions and claims."
+    },
+    {
+      "stage": 6,
+      "name": "source_normalization",
+      "purpose": "Normalize metadata, provenance, identifiers, versions, and source lineage."
+    },
+    {
+      "stage": 7,
+      "name": "independence_analysis",
+      "purpose": "Determine which records represent the same underlying work or genuinely independent works."
+    },
+    {
+      "stage": 8,
+      "name": "question_aware_ranking",
+      "purpose": "Rank sources according to research-question relevance, authority, evidence accessibility, independence, and documentary usefulness."
+    },
+    {
+      "stage": 9,
+      "name": "targeted_retrieval",
+      "purpose": "Retrieve the strongest accessible evidence using source-appropriate routes such as HTML, PDF, repository, API, archive, or institutional page."
+    },
+    {
+      "stage": 10,
+      "name": "evidence_extraction",
+      "purpose": "Extract source-grounded evidence with provenance and location information."
+    },
+    {
+      "stage": 11,
+      "name": "atomic_claim_extraction",
+      "purpose": "Convert evidence into atomic propositions, with one independently assessable claim per record."
+    },
+    {
+      "stage": 12,
+      "name": "claim_corroboration",
+      "purpose": "Test claims against genuinely independent works and identify agreement, disagreement, and evidentiary gaps."
+    },
+    {
+      "stage": 13,
+      "name": "uncertainty_analysis",
+      "purpose": "Represent uncertainty, competing interpretations, causal limitations, chronology uncertainty, and unresolved questions."
+    },
+    {
+      "stage": 14,
+      "name": "research_gap_detection",
+      "purpose": "Identify questions or claims that remain insufficiently supported and trigger additional research when necessary."
+    },
+    {
+      "stage": 15,
+      "name": "verified_claim_ledger",
+      "purpose": "Create the final evidence-grounded claim registry used by downstream documentary generation."
+    }
+  ],
+  "research_question_model": {
+    "required_fields": [
+      "research_question_id",
+      "domain",
+      "question",
+      "priority",
+      "sub_questions",
+      "required_evidence_types",
+      "preferred_source_types",
+      "search_queries",
+      "status"
+    ],
+    "status_values": [
+      "planned",
+      "searching",
+      "partially_supported",
+      "supported",
+      "conflicted",
+      "needs_more_research",
+      "closed"
+    ]
+  },
+  "source_model": {
+    "required_fields": [
+      "source_id",
+      "source_type",
+      "title",
+      "url",
+      "provenance",
+      "research_question_ids",
+      "discovery_method",
+      "canonical_identity",
+      "independence_group_id"
+    ],
+    "source_types": [
+      "scholarly_work",
+      "book",
+      "institutional_source",
+      "museum",
+      "archive",
+      "government",
+      "reference",
+      "news",
+      "documentary",
+      "visual_media",
+      "other"
+    ]
+  },
+  "evidence_model": {
+    "required_fields": [
+      "evidence_id",
+      "source_id",
+      "research_question_id",
+      "evidence_text",
+      "access_level",
+      "location",
+      "evidence_type",
+      "supports_claims",
+      "limitations"
+    ],
+    "access_levels": [
+      "full_text",
+      "page_or_section",
+      "excerpt",
+      "abstract_only",
+      "metadata_only",
+      "visual_only"
+    ]
+  },
+  "claim_model": {
+    "required_fields": [
+      "claim_id",
+      "claim",
+      "research_question_id",
+      "evidence_ids",
+      "independent_work_ids",
+      "support_status",
+      "confidence_basis",
+      "limitations",
+      "contradictions"
+    ],
+    "support_statuses": [
+      "supported",
+      "corroborated",
+      "strongly_corroborated",
+      "contested",
+      "single_source",
+      "insufficient_evidence",
+      "needs_verification"
+    ]
+  },
+  "visual_asset_model": {
+    "purpose": "Treat visual research as evidence and documentary planning data rather than a generic media bucket.",
+    "required_fields": [
+      "asset_id",
+      "asset_type",
+      "source_id",
+      "research_question_ids",
+      "claim_ids",
+      "visual_role",
+      "subject",
+      "original_url",
+      "media_url",
+      "provenance",
+      "authenticity_status",
+      "license_status",
+      "license_evidence",
+      "date_or_period",
+      "geographic_relevance",
+      "acquisition_status"
+    ],
+    "asset_types": [
+      "image",
+      "video",
+      "map",
+      "diagram",
+      "artifact",
+      "document",
+      "satellite_or_aerial",
+      "historical_illustration",
+      "reconstruction_reference",
+      "other"
+    ],
+    "visual_roles": [
+      "establishing_shot",
+      "claim_evidence",
+      "geographic_explanation",
+      "chronology",
+      "comparison",
+      "transition",
+      "artifact_detail",
+      "map_explanation",
+      "reconstruction_reference",
+      "context"
+    ],
+    "authenticity_statuses": [
+      "authentic_historical",
+      "contemporary_documentation",
+      "archaeological_documentation",
+      "museum_or_institutional",
+      "reconstruction",
+      "ai_generated",
+      "unknown"
+    ]
+  },
+  "media_storage": {
+    "purpose": "Control disposable runtime storage without destroying research provenance.",
+    "video_retention_default_days": 7,
+    "policy_basis": "download_age",
+    "track_per_download": [
+      "asset_id",
+      "documentary_id",
+      "source_url",
+      "local_path",
+      "downloaded_at",
+      "last_accessed_at",
+      "file_size_bytes",
+      "sha256",
+      "processing_status",
+      "preservation_status",
+      "used_by_scenes",
+      "cleanup_eligible"
+    ],
+    "cleanup_rules": [
+      "Downloaded videos at least 7 days old are eligible for cleanup by default.",
+      "The retention period is configurable.",
+      "Never delete a video currently being processed.",
+      "Never delete a video explicitly marked preserved.",
+      "Never delete a video required by an active job.",
+      "Never delete final documentary outputs through this cleanup mechanism.",
+      "Never delete source metadata, provenance, evidence, claims, or licenses when deleting the local media file.",
+      "Record every deletion in a cleanup log.",
+      "Support dry-run cleanup before actual deletion.",
+      "Cleanup must be idempotent.",
+      "Failed deletions must remain visible for later retry."
+    ],
+    "planned_artifacts": [
+      "media/media_registry.json",
+      "media/video_downloads.json",
+      "logs/media_cleanup.json"
+    ]
+  },
+  "durability": {
+    "runtime": "Kaggle or other disposable execution environment",
+    "source_of_truth": "GitHub repository",
+    "state_strategy": "structured durable registries",
+    "requirements": [
+      "restartable",
+      "idempotent",
+      "checkpointable",
+      "verifiable",
+      "safe_after_runtime_restart"
+    ]
+  },
+  "planned_registries": [
+    "research/documentary_job.json",
+    "research/research_plan.json",
+    "research/question_registry.json",
+    "research/source_registry.json",
+    "research/independence_registry.json",
+    "research/evidence_registry.json",
+    "research/claim_registry.json",
+    "research/corroboration_registry.json",
+    "research/research_gaps.json",
+    "research/verified_claim_ledger.json",
+    "media/media_registry.json",
+    "media/video_downloads.json",
+    "logs/media_cleanup.json"
+  ],
+  "explicit_non_goals": [
+    "Do not treat discovery metadata as evidence.",
+    "Do not call a claim verified merely because multiple API records repeat it.",
+    "Do not count Crossref and OpenAlex records with the same DOI as independent works.",
+    "Do not assume an environmental change proves civilization-wide collapse.",
+    "Do not assume a proposed decipherment of an undeciphered script is established fact.",
+    "Do not hard-code the Indus Valley topic into the reusable factory.",
+    "Do not silently present AI-generated reconstructions as authentic historical media.",
+    "Do not allow media cleanup to destroy provenance or evidence records."
+  ]
+}
